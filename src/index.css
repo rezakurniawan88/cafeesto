@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.active-paginate {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  border-width: 1px;
+  border-color: #d1d5db;
+}
+
+.active-paginate:hover {
+  background-color: rgb(191 219 254);
+  color: rgb(29 78 216);
+}
