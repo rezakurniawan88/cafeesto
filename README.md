@@ -36,6 +36,11 @@ Halaman Dashboard
 - React-router-dom
 - Apexcharts
 
+
+## Demo
+[![Cafeesto_Demo_Video](https://img.youtube.com/vi/PRgt6QNAQv8/0.jpg)](https://www.youtube.com/watch?v=PRgt6QNAQv8)
+
+
 ## Getting Started
 
 1. Clone repositori :
@@ -57,5 +62,5 @@ npm start
 ```
 
 
-### Backend
+## Backend
 Link repo backend-cafeesto : https://github.com/rezakurniawan88/backend-cafeesto
