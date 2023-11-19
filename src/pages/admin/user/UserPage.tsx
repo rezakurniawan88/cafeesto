@@ -59,7 +59,7 @@ function UserPage() {
                                                 {user.email}
                                             </td>
                                             <td className="px-6 py-4">
-                                                {user.role ? "Admin" : "Cassier"}
+                                                {user.role ? "Administrator" : "Cashier"}
                                             </td>
                                             <td className="px-6 py-4">
                                                 {formattedDate}

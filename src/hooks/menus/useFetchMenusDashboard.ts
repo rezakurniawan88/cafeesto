@@ -1,10 +1,13 @@
 import { useQuery } from "react-query";
 import { axiosInstance } from "../../utils/axios";
 import { toast } from "react-hot-toast";
+import useStore from "../../stores/store";
 
 export const useFetchMenusDashboard = () => {
+    const { pageMenu } = useStore((state) => state);
+
     return useQuery({
-        queryKey: ['fetchAllMenusForDashbord'],
+        queryKey: ['fetchAllMenusForDashbord', pageMenu],
         queryFn: async () => {
             const config = {
                 headers: {
@@ -12,9 +15,9 @@ export const useFetchMenusDashboard = () => {
                 }
             };
 
-            const response = await axiosInstance.get('/menus-dashboard', config);
+            const response = await axiosInstance.get(`/menus-dashboard?page=${pageMenu}`, config);
 
-            return response?.data?.menus?.data;
+            return response;
         },
         onError: () => {
             toast.error("Get Data Menu Failed");

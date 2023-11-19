@@ -12,7 +12,6 @@
   "dependencies": {
     "apexcharts": "^3.44.0",
     "axios": "^1.4.0",
-    "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",

@@ -21,6 +21,7 @@ function CheckoutPage() {
     const { subTotal, totalPrice } = useCartPrice(carts);
     const [isActive, setIsActive] = useState<boolean>(false);
     const [activeTable, setActiveTable] = useState<number>(0);
+    const [options, setOptions] = useState("dinein");
 
     const handleClickTable = (number: number, status: number) => {
         if (status === 0) {
@@ -78,8 +79,8 @@ function CheckoutPage() {
                                         Rp. {cart.price.toLocaleString("id-ID", { minimumFractionDigits: 0 })}
                                     </td>
                                     <td className="px-1">
-                                        <button onClick={() => deleteItem(cart.id)} className="p-1 rounded-lg hover:bg-gray-100">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-black hover:text-red-500">
+                                        <button onClick={() => deleteItem(cart.id)} className="p-1 rounded-lg hover:bg-gray-100 group">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-black group-hover:text-red-500">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                                         </button>
                                     </td>
@@ -127,7 +128,9 @@ function CheckoutPage() {
                                         value="dinein"
                                         id="field-dinein"
                                         className="w-4 h-4 cursor-pointer"
-                                        defaultChecked={true}
+                                        checked={options === "dinein"}
+                                        onChange={() => setOptions("dinein")}
+                                    // defaultChecked={true}
                                     />
                                     <label htmlFor="field-dinein" className="text-sm font-medium text-gray-900">Dine In</label>
                                 </div>
@@ -138,18 +141,20 @@ function CheckoutPage() {
                                         value="takeaway"
                                         id="field-takeaway"
                                         className="w-4 h-4 cursor-pointer"
+                                        checked={options === "takeaway"}
+                                        onChange={() => setOptions("takeaway")}
                                     />
                                     <label htmlFor="field-takeaway" className="text-sm font-medium text-gray-900">Take Away</label>
                                 </div>
                             </div>
                         </div>
-                        <div className="mx-7">
+                        <div className={options === "dinein" ? "mx-7" : "hidden"}>
                             <label htmlFor="table_number" className="block mb-2 text-sm font-medium text-gray-900">Table</label>
                             <div className="flex justify-between items-center">
                                 <h1>Table {activeTable}</h1>
                                 <button onClick={handlerTableModal} type="button" className="bg-orange-500 p-2.5 text-xs text-white rounded-md hover:bg-orange-600">Choose a table</button>
                             </div>
-                            <input type="hidden" id="table_number" value={activeTable} {...register('table_number', { required: true })} />
+                            <input type="hidden" id="table_number" value={activeTable} {...register('table_number')} />
                         </div>
                         <div className="absolute bottom-5 flex justify-center w-full">
                             <button type="submit" className="w-[85%] bg-orange-500 text-white py-3 rounded-xl font-semibold hover:bg-orange-600">{isLoading ? "Processed..." : "Order Now"}</button>

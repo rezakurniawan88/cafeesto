@@ -69,7 +69,7 @@ function OrderPage() {
                                         No
                                     </th>
                                     <th scope="col" className="px-6 py-3">
-                                        Table Name
+                                        Name
                                     </th>
                                     <th scope="col" className="px-6 py-3">
                                         Detail Menu
@@ -99,7 +99,7 @@ function OrderPage() {
                                             {id + 1}
                                         </th>
                                         <td className="px-6 py-4">
-                                            {`Table ${order.table_number} : ${order.name}`}
+                                            {order.table_number === 0 ? order.name : `Table ${order.table_number} : ${order.name}`}
                                         </td>
                                         <td className="px-6 py-4">
                                             {order.items.map((item) => (
@@ -119,7 +119,8 @@ function OrderPage() {
                                             <div className="flex gap-2">
                                                 <button disabled={order.completion_status === 0 ? false : true} onClick={() => handleCompleteOrder(order.id)} className={`font-medium bg-green-600 text-white py-1.5 px-3 rounded-md hover:bg-green-700 ${order.completion_status === 1 && "opacity-50 cursor-not-allowed"}`}>Accept</button>
                                                 <button disabled={order.completion_status === 0 ? false : true} onClick={() => confirmDelete(order.id)} className={`font-medium bg-red-600 text-white py-1.5 px-3 rounded-md hover:bg-red-700 ${order.completion_status === 1 && "opacity-50 cursor-not-allowed"}`}>Reject</button>
-                                                <button onClick={() => handleFinishedTable(order.table.id)} className={`font-medium bg-blue-600 text-white py-1.5 px-3 rounded-md hover:bg-blue-700 ${order.table.status === 1 && "opacity-50 cursor-not-allowed"}`}>Done</button>
+
+                                                <button onClick={() => handleFinishedTable(order.table.id)} className={`font-medium bg-blue-600 text-white py-1.5 px-3 rounded-md hover:bg-blue-700 ${order.options === "takeaway" && "hidden"}  ${(order.table && order.table.status === 0) ? "" : "opacity-50 cursor-not-allowed"}`}>Done</button>
                                             </div>
                                         </td>
                                         <td className={`px-6 py-4 ${order.completion_status === 0 ? "text-red-500" : "text-green-500"}`}>

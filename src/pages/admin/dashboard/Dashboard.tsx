@@ -29,7 +29,7 @@ function Dashboard() {
             <div className="p-4 sm:ml-64">
                 <div className="p-4 mt-14">
                     <h1 className="text-3xl font-bold">Dashboard</h1>
-                    <h1 className="mt-2 text-xl">Hello, {isError ? "Guest" : userData?.data.role ? "Administrator" : "Cassier"}</h1>
+                    <h1 className="mt-2 text-xl">Hello, {isError ? "Guest" : userData?.data.role ? "Administrator" : "Cashier"}</h1>
                     <div className="flex gap-10 mt-8">
                         <div className="flex flex-col justify-center items-center bg-white w-1/3 h-40 font-bold rounded-xl">
                             <h1 className="mb-4 text-gray-600">Today Revenue</h1>

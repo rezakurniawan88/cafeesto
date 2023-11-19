@@ -73,12 +73,14 @@ function Homepage() {
                 <div className="relative flex items-center bg-orange-500 rounded-2xl mt-4 h-60">
                     <div className="absolute w-[40%] ml-10">
                         <h1 className="text-2xl font-bold text-white">Find your favorite menu here, only at cafeesto.</h1>
-                        <button className="mt-4 flex gap-4 justify-between items-center font-semibold text-sm text-white px-6 py-2 border-2 border-gray-200 rounded-full hover:bg-orange-400">
-                            See all
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 font-semibold">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                            </svg>
-                        </button>
+                        <a href="#menu-list">
+                            <button className="mt-4 flex gap-4 justify-between items-center font-semibold text-sm text-white px-6 py-2 border-2 border-gray-200 rounded-full hover:bg-orange-400">
+                                See all
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 font-semibold">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                                </svg>
+                            </button>
+                        </a>
                     </div>
                     <img src={FoodImage} alt="banner" className="absolute right-4 top-2 h-full" />
                 </div>
@@ -89,7 +91,7 @@ function Homepage() {
                     <h1 className="font-medium text-lg sm:text-xl">{activeButton === "foods" ? "Foods 🥘" : activeButton === "snacks" ? "Snacks 🥖" : activeButton === "desserts" ? "Desserts 🎂" : activeButton === "drinks" ? "Drinks ☕" : ""}</h1>
                 </div>
 
-                <div className="flex gap-8 flex-wrap mt-6 py-2 w-full sm:mt-8">
+                <div id="menu-list" className="flex gap-8 flex-wrap mt-6 py-2 w-full sm:mt-8">
                     {menus.length > 0 ? (
                         menus.map((menu) => (
                             <div key={menu.id} className="bg-white w-full rounded-xl p-6 drop-shadow-md sm:w-[30%]">

@@ -1,14 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useCartStore from "../../stores/cartStore";
 import { useCartPrice } from "../../hooks/orders/useCartPrice";
 import useStore from "../../stores/store";
 import useDeleteItem from "../../utils/useDeleteItemCart";
+import toast from "react-hot-toast";
 
 function Sidebar() {
     const { carts, handleQuantity } = useCartStore((state) => state);
     const deleteItem = useDeleteItem();
     const { sidebarOpen, handlerSidebar } = useStore((state) => state);
     const { subTotal, totalPrice } = useCartPrice(carts);
+    const navigate = useNavigate();
+
+    const handleCheckoutButton = () => {
+        if (carts.length <= 0) {
+            toast.error("Error, Please add at least 1 menu");
+        } else {
+            navigate("/checkout")
+        }
+    }
 
     return (
         <aside className={`fixed top-0 right-0 z-40 w-full h-screen transition-transform sm:translate-x-0 sm:w-80 ${sidebarOpen ? "block" : "hidden sm:block"}`}>
@@ -66,14 +76,14 @@ function Sidebar() {
 
 
                 <div className="absolute bottom-6 left-0 w-full flex justify-center">
-                    <Link to="/checkout" className="w-4/5">
-                        <button className="flex justify-between items-center px-6 w-full bg-orange-500 text-sm font-semibold text-white py-3 rounded-xl hover:bg-orange-600">
-                            Check out
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                            </svg>
-                        </button>
-                    </Link>
+                    {/* <Link to="/checkout" className="w-4/5"> */}
+                    <button onClick={handleCheckoutButton} className="w-4/5 flex justify-between items-center px-6 bg-orange-500 text-sm font-semibold text-white py-3 rounded-xl hover:bg-orange-600">
+                        Check out
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
+                    </button>
+                    {/* </Link> */}
                 </div>
             </div>
         </aside>

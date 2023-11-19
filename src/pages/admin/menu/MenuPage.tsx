@@ -13,7 +13,7 @@ import Pagination from "../../../components/pagination/Pagination";
 
 function MenuPage() {
     const { data: dataMenu, isLoading, refetch: refetchMenus } = useFetchMenusDashboard();
-    const { handleDeleteModal, changePage } = useStore((state) => state);
+    const { handleDeleteModal, changePageMenu } = useStore((state) => state);
     const [deletedMenuID, setDeletedMenuID] = useState<number | null>(null);
 
     const { mutate: deleteMenu, isLoading: loadingDelMenu } = useDeleteMenu({
@@ -30,7 +30,8 @@ function MenuPage() {
     }
 
     const handlerChangePage = ({ selected }: { selected: number }) => {
-        changePage(selected);
+        console.log("selected", selected);
+        changePageMenu(selected);
         refetchMenus();
     };
 
@@ -74,7 +75,7 @@ function MenuPage() {
                             </thead>
 
                             <tbody>
-                                {dataMenu?.map((menu: IDataMenu) => (
+                                {dataMenu?.data?.menus?.data?.map((menu: IDataMenu) => (
                                     <tr key={menu.id} className="bg-white border-b">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                             {menu.name}
@@ -104,12 +105,11 @@ function MenuPage() {
                             </tbody>
 
                             {isLoading && <TableSkeleton col={6} />}
-
                         </table>
                     </div>
 
                     <Pagination
-                        pageCount={dataMenu?.last_page}
+                        pageCount={dataMenu?.data?.menus?.last_page}
                         handlerChangePage={handlerChangePage}
                     />
 

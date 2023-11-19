@@ -43,7 +43,7 @@ function TablePage() {
             <div className="p-4 sm:ml-64">
                 <div className="p-4 mt-14">
                     <div className="flex justify-between">
-                        <h1 className="text-3xl font-bold">Table</h1>
+                        <h1 className="text-3xl font-bold">Tables</h1>
                         <div className="flex gap-3">
                             <button className="p-2 rounded-full hover:bg-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

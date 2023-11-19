@@ -6,6 +6,8 @@ type TUseStore = {
     handlerSidebar: () => void;
     page: number;
     changePage: (selected: number) => void;
+    pageMenu: number;
+    changePageMenu: (selected: number) => void;
     tableModalOpen: boolean;
     handlerTableModal: () => void;
     deleteModalOpen: boolean;
@@ -20,6 +22,8 @@ const useStore = create<TUseStore>((set) => ({
     handlerSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen})),
     page: 1,
     changePage: (selected) => set({ page: selected + 1 }),
+    pageMenu: 1,
+    changePageMenu: (selected) => set({ pageMenu: selected + 1 }),
     tableModalOpen: false,
     handlerTableModal: () => set((state) => ({ tableModalOpen: !state.tableModalOpen})),
     deleteModalOpen: false,
